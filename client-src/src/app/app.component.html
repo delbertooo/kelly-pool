@@ -1,0 +1,9 @@
+<h1>
+  {{title}}
+</h1>
+
+<div *ngIf="playerService.currentPlayer$ | async as player">
+  <p>Welcome, {{player.name}}!</p>
+</div>
+
+<router-outlet></router-outlet>

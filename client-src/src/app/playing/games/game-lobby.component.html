@@ -1,0 +1,14 @@
+<p>
+  game-lobby works!
+</p>
+
+<div *ngIf="game$ | async as game">
+  <button (click)="startGame(game)">Start Game</button>
+  <h2>Players:</h2>
+  <ul>
+    <li>{{game.me.name}} (This is you.)</li>
+    <li *ngFor="let player of game.otherPlayers">{{player.name}}</li>
+  </ul>
+</div>
+
+<pre>{{game$|async|json}}</pre>

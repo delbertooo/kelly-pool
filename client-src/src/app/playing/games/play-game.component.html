@@ -1,0 +1,8 @@
+<p>
+  play-game works!
+</p>
+
+<div *ngIf="game$ | async as game">
+  <button (click)="claimWinOfCurrentRound(game)">I won!</button>
+  <div>{{game.me.currentBall}}</div>
+</div>

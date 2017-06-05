@@ -1,0 +1,12 @@
+<p>
+  games works!
+</p>
+<div *ngIf="currentGame$ | async as game">{{game|json}}</div>
+
+<ul>
+  <li *ngIf="!(playerService.currentPlayer$ | async)?.watchedGames?.length">You have no watched games right now.</li>
+  <li *ngFor="let game of (playerService.currentPlayer$ | async).watchedGames">{{game.name}}</li>
+</ul>
+
+<button type="button" (click)="createGame()">Create Game</button>
+<button type="button" (click)="createUser()">Create User</button>
