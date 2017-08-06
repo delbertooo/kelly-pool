@@ -1,6 +1,4 @@
-'use strict';
-
-const app = require('./app');
+import {app} from './app';
 const port = app.get('port');
 const server = app.listen(port);
 

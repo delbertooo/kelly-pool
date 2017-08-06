@@ -1,8 +1,6 @@
-'use strict';
+import * as winston from 'winston';
 
-const winston = require('winston');
-
-module.exports = function(app) {
+export function logger(app) {
   // Add a logger to our app object for convenience
   app.logger = winston;
 
@@ -21,4 +19,4 @@ module.exports = function(app) {
 
     next(error);
   };
-};
+}

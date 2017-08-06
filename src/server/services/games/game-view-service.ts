@@ -1,8 +1,24 @@
-'use strict';
 
-const hooks = require('./game-view-service-hooks');
+const before = {
+  all: [],
+  find: [],
+  get: [],
+  create: [],
+  update: [],
+  patch: [],
+  remove: []
+};
 
-module.exports = function () {
+const after = {
+  all: [],
+  find: [],
+  get: [],
+  create: [],
+  update: [],
+  patch: [],
+  remove: []
+};
+export function gameView() {
     const app = this;
 
     class GameViewService {
@@ -32,8 +48,9 @@ module.exports = function () {
     const gameViewService = app.service('/gameview');
 
     // Set up our before hooks
-    gameViewService.before(hooks.before);
+    gameViewService.before(before);
 
     // Set up our after hooks
-    gameViewService.after(hooks.after);
+    gameViewService.after(after);
 };
+

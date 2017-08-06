@@ -1,11 +1,30 @@
-'use strict';
+import * as path from 'path';
+import * as NeDB from 'nedb';
+import * as service from 'feathers-nedb';
 
-const path = require('path');
-const NeDB = require('nedb');
-const service = require('feathers-nedb');
-const hooks = require('./hooks');
+import {generateName} from './generate-name.hook';
 
-module.exports = function(){
+const before = {
+  all: [],
+  find: [],
+  get: [],
+  create: [generateName()],
+  update: [],
+  patch: [],
+  remove: []
+};
+
+const after = {
+  all: [],
+  find: [],
+  get: [],
+  create: [],
+  update: [],
+  patch: [],
+  remove: []
+};
+
+export function player(){
   const app = this;
 
   const db = new NeDB({
@@ -28,8 +47,8 @@ module.exports = function(){
   const playerService = app.service('/players');
 
   // Set up our before hooks
-  playerService.before(hooks.before);
+  playerService.before(before);
 
   // Set up our after hooks
-  playerService.after(hooks.after);
+  playerService.after(after);
 };

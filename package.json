@@ -21,6 +21,7 @@
     "start": "node src/",
     "mocha": "mocha test/ --recursive",
     "ng": "ng",
+    "server:start": "tsc -w -p src/server/",
     "client:start": "ng serve",
     "client:build": "ng build",
     "client:test": "ng test",

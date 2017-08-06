@@ -1,11 +1,29 @@
-'use strict';
+import * as path from 'path';
+import * as NeDB from 'nedb';
+import * as service from 'feathers-nedb';
+import * as hooks from 'feathers-hooks';
 
-const path = require('path');
-const NeDB = require('nedb');
-const service = require('feathers-nedb');
-const hooks = require('./hooks');
+const before = {
+  all: [(hooks as any).disable('external')],
+  find: [],
+  get: [],
+  create: [],
+  update: [],
+  patch: [],
+  remove: []
+};
 
-module.exports = function(){
+const after = {
+  all: [],
+  find: [],
+  get: [],
+  create: [],
+  update: [],
+  patch: [],
+  remove: []
+};
+
+export function game(){
   const app = this;
 
   const db = new NeDB({
@@ -28,8 +46,10 @@ module.exports = function(){
   const gameService = app.service('/games');
 
   // Set up our before hooks
-  gameService.before(hooks.before);
+  gameService.before(before);
 
   // Set up our after hooks
-  gameService.after(hooks.after);
+  gameService.after(after);
 };
+
+
